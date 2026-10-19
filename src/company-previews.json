@@ -1,0 +1,52 @@
+[
+  {
+    "key": "experience-caspeco",
+    "company": "Caspeco",
+    "url": "https://caspeco.com/en/",
+    "title": "Smart and flexible systems that also increase your profitability",
+    "ogTitle": "Smart and flexible systems that also increase your profitability",
+    "sourceImage": "https://caspeco.com/wp-content/uploads/2025/10/kassa_caspeco_homepage-1.png",
+    "file": "caspeco.png",
+    "fetchedAt": "2026-10-19"
+  },
+  {
+    "key": "experience-papers",
+    "company": "Papers & Pens",
+    "url": "https://www.papers-pens.com/",
+    "title": "B2B Content Marketing Agency for Founders & Growth Teams",
+    "ogTitle": "Papers & Pens - Product Marketing Agency for B2B/SAAS Brands",
+    "sourceImage": "https://cdn.sanity.io/images/n0d9khdx/production/03c5d6e90a1b3ca130471e0e0f2003cfeff012ef-1200x628.png",
+    "file": "papers.png",
+    "fetchedAt": "2026-10-19"
+  },
+  {
+    "key": "experience-inspectorio",
+    "company": "Inspectorio",
+    "url": "https://www.inspectorio.com/",
+    "title": "Inspectorio | Supply Chain Management Software",
+    "sourceImage": "https://www.inspectorio.com/wp-content/uploads/2026/03/HOME-IND-AF-01-1080x608.webp",
+    "file": "inspectorio.webp",
+    "fetchedAt": "2026-10-19",
+    "metadataRetrievedVia": "Public link metadata service; explicit meta[property=\"og:image\"] and title selectors"
+  },
+  {
+    "key": "experience-filum",
+    "company": "Filum",
+    "url": "https://filum.ai/",
+    "title": "Filum AI: Every channel. One inbox. AI that replies for you.",
+    "ogTitle": "Filum AI: Every channel. One inbox. AI that replies for you.",
+    "sourceImage": "https://filum.ai/og/home-og-en.png",
+    "file": "filum.png",
+    "fetchedAt": "2026-10-19"
+  },
+  {
+    "key": "experience-fpt",
+    "company": "FPT Information System",
+    "url": "https://fpt-is.com/en/",
+    "title": "Co-create the NEXT: FPT IS | Homepage",
+    "ogTitle": "Co-create the NEXT: FPT IS | Homepage",
+    "sourceImage": "https://cdn.fpt-is.com/en/sites/3/Banner-Trang-chu_-1751603172.jpg",
+    "file": "fpt.jpg",
+    "fetchedAt": "2026-10-19"
+  }
+]

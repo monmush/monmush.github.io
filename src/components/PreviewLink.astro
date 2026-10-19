@@ -6,13 +6,19 @@ interface Props {
   image: string;
   url?: string | null;
   title: string;
+  caption?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
-const { label, image, url, title, preview } = Astro.props;
+const { label, image, url, title, preview, caption = '', imageWidth = 584, imageHeight = 329 } = Astro.props;
 const shared = {
   'data-preview': preview,
   'data-image': image,
   'data-title': title,
   'data-url': url || '',
+  'data-caption': caption,
+  'data-image-width': imageWidth,
+  'data-image-height': imageHeight,
 };
 ---
 {url ? (

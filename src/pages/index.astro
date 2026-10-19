@@ -1,9 +1,11 @@
 ---
 import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import PreviewLink from '../components/PreviewLink.astro';
 import LinkArrow from '../components/LinkArrow.astro';
 import { X } from '@lucide/astro';
 import content from '../content.json';
+import companyMetadata from '../company-previews.json';
 import '../styles/global.css';
 import amibaWebsite from '../assets/BMwzw.png';
 import amibaIsp from '../assets/t86Ohw.png';
@@ -23,6 +25,13 @@ const originals = {
 const previews = Object.fromEntries(await Promise.all(
   Object.entries(originals).map(async ([key, src]) => [key, (await getImage({ src, format: 'webp', quality: 85 })).src])
 ));
+const companyAssets = import.meta.glob<{ default: ImageMetadata }>('../assets/companies/*.{png,jpg,jpeg,webp}', { eager: true });
+const companyPreviews = Object.fromEntries(await Promise.all(companyMetadata.map(async company => {
+  const src = companyAssets[`../assets/companies/${company.file}`]?.default;
+  if (!src) throw new Error(`Missing company preview image: ${company.company}`);
+  const image = await getImage({ src, width: Math.min(src.width, 960), format: 'webp', quality: 85 });
+  return [company.company, { ...company, image: image.src, width: src.width, height: src.height }];
+})));
 const description = 'Minh Pham, software engineer in Hanoi. Seven years building business websites, software products, and integrations.';
 const tidy = (text: string) => text
   .replace(/(\S+) (\S+)$/, '$1\u00a0$2')
@@ -109,7 +118,7 @@ const tidy = (text: string) => text
           {content.jobs.map(job => (
             <article class="job">
               <div class="job-heading">
-                <h3><a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}<LinkArrow /><span class="sr-only"> (opens in a new tab)</span></a><span class="role"><span class="role-dot" aria-hidden="true"> · </span>{job.role}</span></h3>
+                <h3><PreviewLink label={job.company} title={companyPreviews[job.company].title} caption={companyPreviews[job.company].title} preview={companyPreviews[job.company].key} image={companyPreviews[job.company].image} imageWidth={companyPreviews[job.company].width} imageHeight={companyPreviews[job.company].height} url={job.url} /><span class="role"><span class="role-dot" aria-hidden="true"> · </span>{job.role}</span></h3>
                 <p class="dates muted">{job.dates}</p>
               </div>
               <p class="muted">{tidy(job.context)}</p>
@@ -130,6 +139,7 @@ const tidy = (text: string) => text
 
     <div id="hover-preview" class="hover-preview" aria-hidden="true" hidden>
       <img id="hover-image" alt="" width="584" height="329" decoding="async" />
+      <p id="hover-title" class="hover-title" hidden></p>
     </div>
     <dialog id="preview-dialog" aria-labelledby="preview-title">
       <div class="preview-sheet">

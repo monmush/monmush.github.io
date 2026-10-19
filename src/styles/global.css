@@ -100,6 +100,7 @@ button.preview-trigger { background: none; border: 0; padding: 0; text-align: le
 }
 .hover-preview img, #dialog-image { display: block; width: 100%; height: auto; aspect-ratio: 584 / 329; object-fit: cover; }
 .hover-preview:not([hidden]) { animation: reveal 120ms ease-out; }
+.hover-title { padding: 14px 16px; background: #fff; color: var(--primary); font-size: 18px; font-weight: 600; line-height: 1.4; }
 dialog {
   padding: 0;
   border: 0;

@@ -1,5 +1,6 @@
 const floating = document.querySelector<HTMLDivElement>('#hover-preview')!;
 const hoverImage = document.querySelector<HTMLImageElement>('#hover-image')!;
+const hoverTitle = document.querySelector<HTMLParagraphElement>('#hover-title')!;
 const dialog = document.querySelector<HTMLDialogElement>('#preview-dialog')!;
 const dialogImage = document.querySelector<HTMLImageElement>('#dialog-image')!;
 const dialogTitle = document.querySelector<HTMLHeadingElement>('#preview-title')!;
@@ -9,6 +10,15 @@ const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 let active: HTMLElement | null = null;
 let lastPointer = '';
 let hideTimer: ReturnType<typeof setTimeout> | undefined;
+
+function configureImage(image: HTMLImageElement, trigger: HTMLElement) {
+  const width = Number(trigger.dataset.imageWidth) || 584;
+  const height = Number(trigger.dataset.imageHeight) || 329;
+  image.width = width;
+  image.height = height;
+  image.style.aspectRatio = `${width} / ${height}`;
+  image.src = trigger.dataset.image || '';
+}
 
 function hidePreview() {
   clearTimeout(hideTimer);
@@ -22,11 +32,14 @@ function showPreview(trigger: HTMLElement) {
   const image = trigger.dataset.image;
   if (!image) return;
   active = trigger;
-  hoverImage.src = image;
+  configureImage(hoverImage, trigger);
+  hoverTitle.textContent = trigger.dataset.caption || '';
+  hoverTitle.hidden = !trigger.dataset.caption;
   const rect = trigger.getBoundingClientRect();
   if (rect.bottom < 0 || rect.top > window.innerHeight) return hidePreview();
   const width = Math.min(480, window.innerWidth - 32);
-  const height = width * 329 / 584;
+  floating.hidden = false;
+  const height = floating.getBoundingClientRect().height;
   const right = rect.right + 24;
   const x = right + width <= window.innerWidth - 16
     ? right : Math.max(16, window.innerWidth - width - 16);
@@ -39,7 +52,7 @@ function showPreview(trigger: HTMLElement) {
 function showDialog(trigger: HTMLElement) {
   hidePreview();
   dialogTitle.textContent = trigger.dataset.title || 'Project preview';
-  dialogImage.src = trigger.dataset.image || '';
+  configureImage(dialogImage, trigger);
   dialogImage.alt = trigger.dataset.title || 'Project preview';
   const url = trigger.dataset.url;
   visit.hidden = !url;

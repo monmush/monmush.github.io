@@ -30,6 +30,8 @@ previews, mobile overflow, and 200% text scaling.
 ## Content and design
 
 - `src/content.json`: the agreed copy, project destinations, and job websites.
+- `src/company-previews.json`: company SEO titles, source Open Graph image URLs,
+  and the metadata snapshot date. Experience links show these company previews.
 - `src/styles/global.css`: Geist, greyscale palette, spacing, responsive/print styles.
 - `src/components/PreviewLink.astro`: accessible links and preview-only buttons.
 - `src/scripts/previews.ts`: hover/focus previews and touch/keyboard dialogs.
@@ -38,6 +40,11 @@ previews, mobile overflow, and 200% text scaling.
 
 Video is deliberately omitted until the final film is ready. The Moonstone studio
 entry is a preview-only button; it has no public software destination.
+
+Company images are cached and optimized locally, so visitors do not contact the
+company websites to load previews. Inspectorio's SEO title and exact `og:image`
+tag were verified through a public link-metadata service because the homepage
+blocks direct automated requests. Every company uses its published preview image.
 
 ## Deploy
 

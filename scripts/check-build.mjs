@@ -4,6 +4,7 @@ import { gzipSync } from 'node:zlib';
 
 const html = await readFile('dist/index.html', 'utf8');
 const content = JSON.parse(await readFile('src/content.json', 'utf8'));
+const companyPreviews = JSON.parse(await readFile('src/company-previews.json', 'utf8'));
 assert.equal(content.projects.length, 5, 'Keep the five agreed projects');
 assert.equal(content.jobs.length, 5, 'Keep the five agreed jobs');
 assert.equal((html.match(/class="project"/g) || []).length, 5);
@@ -12,7 +13,10 @@ assert.ok(!html.includes('Caspeco platform scale'), 'Caspeco uses normal prose')
 assert.ok(!html.includes('<video'), 'Do not publish an unfinished video');
 assert.ok(!/href="(?:#|)"/.test(html), 'Links must have destinations');
 const images = [...new Set([...html.matchAll(/data-image="([^"]+)"/g)].map(m => m[1]))];
-assert.equal(images.length, 7, 'Each deliverable keeps its own preview');
+assert.equal(companyPreviews.length, 5, 'Keep metadata for each company');
+assert.ok(companyPreviews.every(company => company.title && company.sourceImage?.startsWith('https://') && company.file), 'Company previews must use sourced SEO titles and Open Graph images');
+assert.equal(images.length, 12, 'Keep seven project and five company images');
+assert.equal((html.match(/data-preview="experience-/g) || []).length, 5, 'Each job needs a company website preview');
 for (const image of images) {
   const info = await stat(`dist${image}`);
   assert.ok(info.size < 200_000, `${image} is too large for a thumbnail`);
@@ -24,4 +28,4 @@ for (const file of await readdir('dist/_astro')) {
   if (file.endsWith('.js')) jsBytes += gzipSync(await readFile(`dist/_astro/${file}`)).length;
 }
 assert.ok(jsBytes < 6000, `Client JavaScript exceeds 6KB gzip: ${jsBytes}`);
-console.log(`Passed: 5 projects, 5 jobs, 7 optimized previews. HTML ${gzipSync(html).length}B gzip; JS ${jsBytes}B gzip.`);
+console.log(`Passed: 5 projects, 5 jobs, ${images.length} optimized images. HTML ${gzipSync(html).length}B gzip; JS ${jsBytes}B gzip.`);
