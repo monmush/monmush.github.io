@@ -33,6 +33,15 @@
   --muted: #666;
 }
 *, *::before, *::after { box-sizing: border-box; }
+/* Keep the page scrollbar on the viewport, with a reserved outer-edge track. */
+html { overflow-y: scroll; scrollbar-gutter: stable; }
+html::-webkit-scrollbar { width: 8px; }
+html::-webkit-scrollbar-track { background: #fff; }
+html::-webkit-scrollbar-thumb { background: #b8b8b8; border: 2px solid #fff; border-radius: 8px; }
+html::-webkit-scrollbar-thumb:hover { background: #888; }
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-width: thin; scrollbar-color: #b8b8b8 #fff; }
+}
 body { margin: 0; -webkit-font-smoothing: antialiased; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { font: inherit; }
