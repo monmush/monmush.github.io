@@ -1,0 +1,144 @@
+---
+import { getImage } from 'astro:assets';
+import PreviewLink from '../components/PreviewLink.astro';
+import content from '../content.json';
+import '../styles/global.css';
+import amibaWebsite from '../assets/BMwzw.png';
+import amibaIsp from '../assets/t86Ohw.png';
+import moonstoneWebsite from '../assets/nCIKv.png';
+import moonstoneStudio from '../assets/V4dRv.png';
+import inspectorio from '../assets/P7ubg.png';
+import papers from '../assets/NVHp1.png';
+import mpstudio from '../assets/xtBPk.png';
+
+const originals = {
+  'amiba-website': amibaWebsite,
+  'amiba-isp': amibaIsp,
+  'moonstone-website': moonstoneWebsite,
+  'moonstone-studio': moonstoneStudio,
+  inspectorio, papers, mpstudio,
+};
+const previews = Object.fromEntries(await Promise.all(
+  Object.entries(originals).map(async ([key, src]) => [key, (await getImage({ src, format: 'webp', quality: 85 })).src])
+));
+const description = 'Minh Pham, software engineer in Hanoi. Seven years building business websites, software products, and integrations.';
+const tidy = (text: string) => text
+  .replace(/(\S+) (\S+)$/, '$1\u00a0$2')
+  .replace(/Inspectorio RISE/g, 'Inspectorio\u00a0RISE')
+  .replace(/DICK’S Sporting[ \u00a0]Goods/g, 'DICK’S\u00a0Sporting\u00a0Goods')
+  .replace(/supply-chain/g, 'supply‑chain')
+  .replace(/Supply-chain/g, 'Supply‑chain')
+  .replace(/check-in/g, 'check‑in')
+  .replace(/check-out/g, 'check‑out');
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Minh Pham — Software Engineer</title>
+    <link rel="canonical" href={Astro.site} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/geist-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <meta property="og:title" content="Minh Pham — Software Engineer" />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.site} />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'Person', name: content.name,
+      jobTitle: content.title, url: Astro.site, email: 'mailto:minh.pham.developer@gmail.com',
+      sameAs: ['https://github.com/monmush', 'https://www.linkedin.com/in/minh-pham-developer/'],
+    })} />
+  </head>
+  <body>
+    <a class="skip-link" href="#selected-work">Skip to selected work</a>
+    <main id="main">
+      <header class="opening">
+        <div class="identity">
+          <h1>{content.name}</h1>
+          <p class="muted location"><span>{content.title}</span><span class="location-dot" aria-hidden="true"> · </span><span>{tidy(content.location)}</span></p>
+        </div>
+        <nav class="contact-links" aria-label="Contact Minh">
+          <a href="mailto:minh.pham.developer@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/minh-pham-developer/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://github.com/monmush" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+        </nav>
+        <p class="introduction">{tidy(content.intro)}</p>
+      </header>
+
+      <section aria-labelledby="selected-work" class="section">
+        <h2 id="selected-work">Selected work</h2>
+        <div class="entry-list">
+          {content.projects.map(project => (
+            <article class="project">
+              <div class="project-heading">
+                <h3>{project.preview && project.url ? (
+                  <PreviewLink label={project.name} title={project.name} preview={project.preview} image={previews[project.preview]} url={project.url} />
+                ) : project.name}</h3>
+                <ul class="badges" aria-label="Industry and country">
+                  {project.meta.map(label => <li>{label}</li>)}
+                </ul>
+              </div>
+              {project.deliverables ? (
+                <div class="deliverables">
+                  {project.deliverables.map(item => (
+                    <div class="deliverable">
+                      <h4><PreviewLink label={item.label} title={`${project.name} · ${item.label}`} preview={item.preview} image={previews[item.preview]} url={item.url} /></h4>
+                      <p>{tidy(item.description)}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : <p>{tidy(project.description || '')}</p>}
+              {project.archive && <p><a class="archive-link" href={project.archive.url} target="_blank" rel="noopener noreferrer">{project.archive.label}<span class="link-arrow" aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="experience" class="section">
+        <div class="section-introduction">
+          <h2 id="experience">Experience</h2>
+          <p>{tidy(content.summary)}</p>
+        </div>
+        <div class="entry-list">
+          {content.jobs.map(job => (
+            <article class="job">
+              <div class="job-heading">
+                <h3><a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}<span class="link-arrow" aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a><span class="role"><span class="role-dot" aria-hidden="true"> · </span>{job.role}</span></h3>
+                <p class="dates muted">{job.dates}</p>
+              </div>
+              <p class="muted">{tidy(job.context)}</p>
+              {job.paragraphs.map(paragraph => <p>{tidy(paragraph)}</p>)}
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="education" class="section">
+        <h2 id="education">Education</h2>
+        <div class="education">
+          <p class="degree">{tidy(content.education.degree)}</p>
+          <p class="muted">{tidy(content.education.school)}</p>
+        </div>
+      </section>
+    </main>
+
+    <div id="hover-preview" class="hover-preview" aria-hidden="true" hidden>
+      <img id="hover-image" alt="" width="584" height="329" decoding="async" />
+    </div>
+    <dialog id="preview-dialog" aria-labelledby="preview-title">
+      <div class="preview-sheet">
+        <div class="preview-heading">
+          <h2 id="preview-title"></h2>
+          <button type="button" id="close-preview" aria-label="Close preview">×</button>
+        </div>
+        <img id="dialog-image" alt="" width="584" height="329" decoding="async" />
+        <a id="visit-project" href="/" target="_blank" rel="noopener noreferrer" hidden>Visit website <span aria-hidden="true">↗</span></a>
+      </div>
+    </dialog>
+    <script src="../scripts/previews.ts"></script>
+  </body>
+</html>

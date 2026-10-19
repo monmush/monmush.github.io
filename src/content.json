@@ -1,0 +1,145 @@
+{
+  "name": "Minh Pham",
+  "title": "Software Engineer",
+  "location": "Hanoi, Vietnam",
+  "intro": "I build business websites, software, and integrations for small and medium businesses.",
+  "summary": "Seven years of experience, mainly building software products for hospitality, retail supply chains, and customer management. My experience spans early-stage startups, Series A and B product companies, a marketing agency, and corporate teams.",
+  "projects": [
+    {
+      "name": "Amiba Bukit Bintang",
+      "meta": [
+        "Property",
+        "Malaysia"
+      ],
+      "deliverables": [
+        {
+          "label": "Website",
+          "description": "Built the public property website.",
+          "preview": "amiba-website",
+          "url": "https://amibabukitbintang.com.my/"
+        },
+        {
+          "label": "Interactive sales presentation (ISP)",
+          "description": "An interactive presentation for prospective buyers to explore residence layouts, facilities, location, and views. Supports English and Simplified Chinese.",
+          "preview": "amiba-isp",
+          "url": "https://amibabukitbintang.com.my/isp"
+        }
+      ]
+    },
+    {
+      "name": "Moonstone Wellness",
+      "meta": [
+        "Wellness studio",
+        "Vietnam"
+      ],
+      "deliverables": [
+        {
+          "label": "Website",
+          "description": "Built the public website for a wellness studio in Hanoi.",
+          "preview": "moonstone-website",
+          "url": "https://moonstonewellness.vn/"
+        },
+        {
+          "label": "Studio management",
+          "description": "A management platform covering sales orders, customer check-in and check-out, packages and memberships, promotions, and online booking.",
+          "preview": "moonstone-studio",
+          "url": null
+        }
+      ]
+    },
+    {
+      "name": "Inspectorio",
+      "meta": [
+        "Supply chain software",
+        "United States"
+      ],
+      "description": "I helped build Inspectorio RISE, a supplier compliance platform that helps businesses assess suppliers, manage audit and compliance records, and track follow-up actions across their supply chains.",
+      "preview": "inspectorio",
+      "url": "https://inspectorio.com/"
+    },
+    {
+      "name": "Papers & Pens",
+      "meta": [
+        "Marketing agency",
+        "Vietnam"
+      ],
+      "description": "Built the agency’s website, presenting its services, client projects, articles, and contact options.",
+      "preview": "papers",
+      "url": "https://www.papers-pens.com/services/website-design-and-build",
+      "archive": {
+        "label": "View agency projects",
+        "url": "https://www.papers-pens.com/projects"
+      }
+    },
+    {
+      "name": "MPStudio",
+      "meta": [
+        "AI automation",
+        "Vietnam"
+      ],
+      "description": "Built a business website presenting AI automation services, project examples, pricing, and enquiry options.",
+      "preview": "mpstudio",
+      "url": "https://mpstudio.dev/"
+    }
+  ],
+  "jobs": [
+    {
+      "company": "Caspeco",
+      "role": "Fullstack Engineer",
+      "dates": "Mar 2026 – Present",
+      "context": "Sweden · Restaurant management software",
+      "paragraphs": [
+        "I work on Caspeco Booking, building the online booking system for restaurant guests and staff.",
+        "Caspeco builds software for restaurant bookings, payments, staffing, and business reporting. Its wider platform is used across 20,000+ venues. Caspeco reports 6,500 customers and partners in 18+ countries."
+      ],
+      "url": "https://caspeco.com/en/"
+    },
+    {
+      "company": "Papers & Pens",
+      "role": "Tech Lead",
+      "dates": "Nov 2024 – Feb 2026",
+      "context": "Vietnam · Marketing agency serving technology companies",
+      "paragraphs": [
+        "Led web development for the agency’s own website and client projects, from the initial brief through launch."
+      ],
+      "url": "https://www.papers-pens.com/"
+    },
+    {
+      "company": "Inspectorio",
+      "role": "Frontend Engineer",
+      "dates": "Nov 2022 – Oct 2024",
+      "context": "United States · Supply-chain management software",
+      "paragraphs": [
+        "I helped build Inspectorio RISE, a supplier compliance platform that helps businesses assess suppliers, manage audit and compliance records, and track follow-up actions across their supply chains.",
+        "Inspectorio is a US-based software company serving Fortune 500 retailers, including Target, Kohl’s, and DICK’S Sporting Goods."
+      ],
+      "url": "https://inspectorio.com/"
+    },
+    {
+      "company": "Filum",
+      "role": "Founding Engineer",
+      "dates": "Oct 2020 – Oct 2022",
+      "context": "Vietnam · Customer data and experience software",
+      "paragraphs": [
+        "Joined as the second engineering hire and helped build Filum’s customer data platform from early development through its first client release. The platform brings customer information, feedback, and reporting into one place to help businesses understand their customers.",
+        "The company later raised US$1 million from investors including VinVentures, Nextrans, and TheVentures."
+      ],
+      "url": "https://filum.ai/"
+    },
+    {
+      "company": "FPT Information System",
+      "role": "Frontend Engineer",
+      "dates": "Sep 2019 – Sep 2020",
+      "context": "Vietnam · Enterprise software and integration",
+      "paragraphs": [
+        "Worked on an e-commerce mobile app for Boston Pharma Vietnam, connected to its SAP business management system. The app lets customers browse product information and place orders as part of the company’s sales and supply-chain operations.",
+        "I met with the client in person, gathered requirements, designed the mobile app, and helped deliver it through launch."
+      ],
+      "url": "https://fpt-is.com/en/"
+    }
+  ],
+  "education": {
+    "degree": "Bachelor of Engineering in Information Technology",
+    "school": "South-Eastern Finland University of Applied Sciences · Finland · 2019"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "minh-pham-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "check": "astro check && node scripts/check-build.mjs",
+    "prepare:pages": "npm run build && npm run check && node scripts/prepare-pages.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.4.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  }
+}

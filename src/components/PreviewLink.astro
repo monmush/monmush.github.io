@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  preview: string;
+  image: string;
+  url?: string | null;
+  title: string;
+}
+const { label, image, url, title, preview } = Astro.props;
+const shared = {
+  'data-preview': preview,
+  'data-image': image,
+  'data-title': title,
+  'data-url': url || '',
+};
+---
+{url ? (
+  <a class="preview-trigger" href={url} target="_blank" rel="noopener noreferrer" {...shared}>
+    {label}<span class="link-arrow" aria-hidden="true"> ↗</span>
+    <span class="sr-only"> (opens in a new tab)</span>
+  </a>
+) : (
+  <button class="preview-trigger" type="button" aria-haspopup="dialog" {...shared}>
+    {label}<span class="link-arrow" aria-hidden="true"> ↗</span>
+    <span class="sr-only"> — preview</span>
+  </button>
+)}
