@@ -82,6 +82,7 @@ main {
 .preview-trigger { cursor: pointer; }
 button.preview-trigger { background: none; border: 0; padding: 0; text-align: left; font-weight: inherit; color: var(--primary); }
 .link-arrow { display: inline; white-space: nowrap; }
+.link-arrow svg { display: inline-block; vertical-align: -0.15em; }
 .job-heading { display: flex; gap: 24px; align-items: baseline; justify-content: space-between; }
 .dates { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .degree { font-weight: 600; color: var(--primary); }
@@ -113,7 +114,7 @@ dialog::backdrop { background: #00000032; }
 .preview-sheet { display: grid; gap: 16px; padding: 16px; }
 .preview-heading { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; }
 .preview-heading h2 { font-size: 18px; font-weight: 600; line-height: 1.5; text-wrap: pretty; }
-#close-preview { flex: 0 0 32px; min-height: 32px; border: none; padding: 0; margin-top: -2px; background: none; font-size: 28px; line-height: 1; cursor: pointer; }
+#close-preview { display: grid; place-items: center; flex: 0 0 32px; min-height: 32px; border: none; padding: 0; margin-top: -2px; background: none; line-height: 1; cursor: pointer; }
 #dialog-image { border-radius: 6px; }
 #visit-project { justify-self: start; font-weight: 600; padding-block: 4px; }
 [hidden] { display: none !important; }

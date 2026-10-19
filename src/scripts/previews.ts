@@ -4,6 +4,7 @@ const dialog = document.querySelector<HTMLDialogElement>('#preview-dialog')!;
 const dialogImage = document.querySelector<HTMLImageElement>('#dialog-image')!;
 const dialogTitle = document.querySelector<HTMLHeadingElement>('#preview-title')!;
 const visit = document.querySelector<HTMLAnchorElement>('#visit-project')!;
+const visitLabel = document.querySelector<HTMLSpanElement>('#visit-label')!;
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 let active: HTMLElement | null = null;
 let lastPointer = '';
@@ -44,7 +45,7 @@ function showDialog(trigger: HTMLElement) {
   visit.hidden = !url;
   if (url) {
     visit.href = url;
-    visit.textContent = trigger.dataset.preview === 'amiba-isp' ? 'Open presentation ↗' : 'Visit website ↗';
+    visitLabel.textContent = trigger.dataset.preview === 'amiba-isp' ? 'Open presentation' : 'Visit website';
   } else {
     visit.removeAttribute('href');
   }
@@ -90,3 +91,30 @@ window.addEventListener('scroll', () => {
   else hidePreview();
 }, { passive: true });
 window.addEventListener('resize', () => { if (active) showPreview(active); }, { passive: true });
+
+// Warm the browser's image cache after the page's critical resources finish.
+// Keep requests low priority and sequential so reading stays responsive.
+async function prefetchPreviews() {
+  const urls = new Set(Array.from(document.querySelectorAll<HTMLElement>('[data-image]'), trigger => trigger.dataset.image));
+  for (const url of urls) {
+    if (!url) continue;
+    await new Promise<void>(resolve => {
+      const image = new Image();
+      image.fetchPriority = 'low';
+      image.decoding = 'async';
+      image.onload = image.onerror = () => resolve();
+      image.src = url;
+    });
+  }
+}
+
+function schedulePrefetch() {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(() => void prefetchPreviews(), { timeout: 1500 });
+  } else {
+    setTimeout(() => void prefetchPreviews(), 250);
+  }
+}
+
+if (document.readyState === 'complete') schedulePrefetch();
+else window.addEventListener('load', schedulePrefetch, { once: true });

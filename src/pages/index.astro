@@ -1,6 +1,8 @@
 ---
 import { getImage } from 'astro:assets';
 import PreviewLink from '../components/PreviewLink.astro';
+import LinkArrow from '../components/LinkArrow.astro';
+import { X } from '@lucide/astro';
 import content from '../content.json';
 import '../styles/global.css';
 import amibaWebsite from '../assets/BMwzw.png';
@@ -92,7 +94,7 @@ const tidy = (text: string) => text
                   ))}
                 </div>
               ) : <p>{tidy(project.description || '')}</p>}
-              {project.archive && <p><a class="archive-link" href={project.archive.url} target="_blank" rel="noopener noreferrer">{project.archive.label}<span class="link-arrow" aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>}
+              {project.archive && <p><a class="archive-link" href={project.archive.url} target="_blank" rel="noopener noreferrer">{project.archive.label}<LinkArrow /><span class="sr-only"> (opens in a new tab)</span></a></p>}
             </article>
           ))}
         </div>
@@ -107,7 +109,7 @@ const tidy = (text: string) => text
           {content.jobs.map(job => (
             <article class="job">
               <div class="job-heading">
-                <h3><a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}<span class="link-arrow" aria-hidden="true"> ↗</span><span class="sr-only"> (opens in a new tab)</span></a><span class="role"><span class="role-dot" aria-hidden="true"> · </span>{job.role}</span></h3>
+                <h3><a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}<LinkArrow /><span class="sr-only"> (opens in a new tab)</span></a><span class="role"><span class="role-dot" aria-hidden="true"> · </span>{job.role}</span></h3>
                 <p class="dates muted">{job.dates}</p>
               </div>
               <p class="muted">{tidy(job.context)}</p>
@@ -133,10 +135,10 @@ const tidy = (text: string) => text
       <div class="preview-sheet">
         <div class="preview-heading">
           <h2 id="preview-title"></h2>
-          <button type="button" id="close-preview" aria-label="Close preview">×</button>
+          <button type="button" id="close-preview" aria-label="Close preview"><X size={20} stroke-width={2} aria-hidden="true" /></button>
         </div>
         <img id="dialog-image" alt="" width="584" height="329" decoding="async" />
-        <a id="visit-project" href="/" target="_blank" rel="noopener noreferrer" hidden>Visit website <span aria-hidden="true">↗</span></a>
+        <a id="visit-project" href="/" target="_blank" rel="noopener noreferrer" hidden><span id="visit-label">Visit website</span><LinkArrow /></a>
       </div>
     </dialog>
     <script src="../scripts/previews.ts"></script>

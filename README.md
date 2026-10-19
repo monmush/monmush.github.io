@@ -4,6 +4,9 @@ A static, document-style portfolio built with Astro. HTML and CSS do the work;
 the only client JavaScript handles project thumbnail previews. No React runtime,
 database, analytics, external font service, or server is required.
 
+Lucide icons render as inline SVGs at build time. Preview images warm the browser
+cache at low priority, one at a time, after page load and an idle callback.
+
 ## Develop
 
 Use Node.js 24 LTS (or Node.js 22.22 or later).

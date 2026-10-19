@@ -1,4 +1,5 @@
 ---
+import LinkArrow from './LinkArrow.astro';
 interface Props {
   label: string;
   preview: string;
@@ -16,12 +17,12 @@ const shared = {
 ---
 {url ? (
   <a class="preview-trigger" href={url} target="_blank" rel="noopener noreferrer" {...shared}>
-    {label}<span class="link-arrow" aria-hidden="true"> ↗</span>
+    {label}<LinkArrow />
     <span class="sr-only"> (opens in a new tab)</span>
   </a>
 ) : (
   <button class="preview-trigger" type="button" aria-haspopup="dialog" {...shared}>
-    {label}<span class="link-arrow" aria-hidden="true"> ↗</span>
+    {label}<LinkArrow />
     <span class="sr-only"> — preview</span>
   </button>
 )}
