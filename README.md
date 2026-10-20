@@ -38,7 +38,11 @@ previews, mobile overflow, and 200% text scaling.
 - `src/assets/`: accepted thumbnail source images, optimized to WebP at build time.
 - `public/fonts/`: self-hosted Geist, with its license.
 
-Video is deliberately omitted until the final film is ready. The Moonstone studio
+The finished 52-second introduction film lives in `public/video/`, with a WebP
+poster and English captions from the film's timed narration. Native controls
+support sound, seeking and fullscreen. `preload="none"` keeps the 10 MB MP4 out
+of the initial page load; playback starts only when the visitor chooses it.
+The Moonstone studio
 entry is a preview-only button; it has no public software destination.
 
 Company images are cached and optimized locally, so visitors do not contact the

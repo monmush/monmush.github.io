@@ -10,7 +10,12 @@ assert.equal(content.jobs.length, 5, 'Keep the five agreed jobs');
 assert.equal((html.match(/class="project"/g) || []).length, 5);
 assert.equal((html.match(/class="job"/g) || []).length, 5);
 assert.ok(!html.includes('Caspeco platform scale'), 'Caspeco uses normal prose');
-assert.ok(!html.includes('<video'), 'Do not publish an unfinished video');
+assert.equal((html.match(/<video\b/g) || []).length, 1, 'Include the finished introduction film');
+const videoTag = html.match(/<video\b[^>]*>/)?.[0] || '';
+assert.ok(videoTag.includes('preload="none"') && !videoTag.includes('autoplay'), 'Load the film only when visitors choose to play');
+for (const file of ['portfolio-intro-v32-web.mp4', 'portfolio-intro-v32-poster.webp', 'portfolio-intro-v32-en.vtt']) {
+  assert.ok((await stat(`dist/video/${file}`)).size > 0, `Missing film asset: ${file}`);
+}
 assert.ok(!/href="(?:#|)"/.test(html), 'Links must have destinations');
 const images = [...new Set([...html.matchAll(/data-image="([^"]+)"/g)].map(m => m[1]))];
 assert.equal(companyPreviews.length, 5, 'Keep metadata for each company');

@@ -70,6 +70,7 @@ main {
 .contact-links { display: flex; gap: 24px; width: fit-content; }
 .contact-links a { display: inline-flex; align-items: center; min-height: 32px; }
 .introduction { margin-top: 12px; }
+.intro-film { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; margin-top: 16px; background: #f2f2f2; border-radius: 8px; }
 .section { display: flex; flex-direction: column; gap: 28px; }
 .section-introduction { display: grid; gap: 12px; }
 .entry-list { display: grid; gap: 44px; }
@@ -155,7 +156,7 @@ dialog::backdrop { background: #00000032; }
   h3 { font-size: 12pt; }
   h4, .badges li { font-size: 10pt; }
   .entry-list { gap: 16pt; }
-  .hover-preview, dialog, .skip-link { display: none !important; }
+  .intro-film, .hover-preview, dialog, .skip-link { display: none !important; }
   .project, .job { break-inside: avoid; }
   a { text-decoration: none; }
   @page { margin: 16mm; }
