@@ -13,7 +13,9 @@ assert.ok(!html.includes('Caspeco platform scale'), 'Caspeco uses normal prose')
 assert.equal((html.match(/<video\b/g) || []).length, 1, 'Include the finished introduction film');
 const videoTag = html.match(/<video\b[^>]*>/)?.[0] || '';
 assert.ok(videoTag.includes('preload="none"') && !videoTag.includes('autoplay'), 'Load the film only when visitors choose to play');
-for (const file of ['portfolio-intro-v32-web.mp4', 'portfolio-intro-v32-poster.webp', 'portfolio-intro-v32-en.vtt']) {
+assert.ok(videoTag.includes('width="1920"') && videoTag.includes('height="1080"'), 'Use the HD film dimensions');
+assert.ok(html.includes('/video/portfolio-intro-v33-1080p.mp4'), 'Serve the crisp 1080p film');
+for (const file of ['portfolio-intro-v33-1080p.mp4', 'portfolio-intro-v33-poster.webp', 'portfolio-intro-v32-en.vtt']) {
   assert.ok((await stat(`dist/video/${file}`)).size > 0, `Missing film asset: ${file}`);
 }
 assert.ok(!/href="(?:#|)"/.test(html), 'Links must have destinations');

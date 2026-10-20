@@ -38,10 +38,7 @@ previews, mobile overflow, and 200% text scaling.
 - `src/assets/`: accepted thumbnail source images, optimized to WebP at build time.
 - `public/fonts/`: self-hosted Geist, with its license.
 
-The finished 52-second introduction film lives in `public/video/`, with a WebP
-poster and English captions from the film's timed narration. Native controls
-support sound, seeking and fullscreen. `preload="none"` keeps the 10 MB MP4 out
-of the initial page load; playback starts only when the visitor chooses it.
+The finished 51.6-second introduction film lives in `public/video/`. The current source is the v33 **1920×1080** copy, with a 1920px WebP poster and the unchanged v32 English captions. This avoids enlarging the lightweight 720p copy on Retina displays. v33 also raises tactile taps/actions and laptop sweeps by 6dB, with short music dips around those effects. Native controls support sound, seeking and fullscreen. `preload="none"` keeps the roughly 25 MB HD film out of the initial page load; playback starts only when the visitor chooses it.
 The Moonstone studio
 entry is a preview-only button; it has no public software destination.
 
